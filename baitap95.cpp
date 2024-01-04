@@ -1,27 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
-int tsp(int A[],int n,int k)
+int kiemtra(int A[], int n)
 {
-	for (int i=n-k;i<n;i++)
+	int somax=A[0];
+	int i=0,dem=0;
+while (i<n)
 	{
-		for (int j=0;j<k;j++)
+		if (A[i-1]==A[i])
 		{
-			A[k]=A[i];
+			i++;
 		}
+		int temp=0;
+		for (int j=i;j<n;j++)
+		{
+			if (A[i]==A[j])
+			{
+				temp++;
+			}
+		}
+		if (temp>dem)
+		{
+			dem=temp;
+			somax=A[i];
+		}
+		i++;
 	}
+	return somax;
 }
 int main()
 {
-	int n,k;
-	cin>>n>>k;
+	int n;
+	cin>>n;
 	int A[n];
 	for (int i=0;i<n;i++)
 	{
 		cin>>A[i];
 	}
-	tsp(A,n,k);
-	for (int i=0;i<n;i++)
-	{
-		cout<<A[i]<<" ";
-	}
+	cout<<kiemtra(A,n);
 }
